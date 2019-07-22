@@ -1,0 +1,27 @@
+{
+  "name": "webpack-devserver-mock-middleware",
+  "version": "1.0.0",
+  "description": "mock middleware for express ",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/hsuehic/mock-middleware.git"
+  },
+  "keywords": [
+    "mock",
+    "webpack",
+    "devserver"
+  ],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hsuehic/mock-middleware/issues"
+  },
+  "homepage": "https://github.com/hsuehic/mock-middleware#readme",
+  "dependencies": {
+    "chokidar": "^3.0.2"
+  }
+}
