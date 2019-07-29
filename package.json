@@ -1,6 +1,6 @@
 {
   "name": "webpack-devserver-mock-middleware",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "mock middleware for express ",
   "main": "index.js",
   "typings": "index.d.ts",
