@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "mock middleware for express ",
   "main": "index.js",
+  "typings": "index.d.ts",
   "scripts": {
     "test": "test"
   },
@@ -23,5 +24,8 @@
   "homepage": "https://github.com/hsuehic/mock-middleware#readme",
   "dependencies": {
     "chokidar": "^3.0.2"
+  },
+  "peerDependencies": {
+    "express": "^4.17.1"
   }
 }

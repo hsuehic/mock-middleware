@@ -1,4 +1,4 @@
-# Webpack DevServer Mock Middleware
+# Webpack DevServer Mock Middleware(webpack-devserver-mock-middleware)
 
 ## Create a directory for mock data
 
@@ -43,7 +43,7 @@ Server would watch the directory and would hot reload whenever whatever changed 
 
 ```js
 const path = require('path');
-const mockMiddleware = require('mock-middleware');
+const mockMiddleware = require('webpack-devserver-mock-middleware');
 module.exports = {
   devServer: {
     before: function(app, server) {
