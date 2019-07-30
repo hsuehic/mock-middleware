@@ -1,11 +1,12 @@
 {
   "name": "webpack-devserver-mock-middleware",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "mock middleware for express ",
-  "main": "index.js",
+  "main": "./dist/index.js",
   "typings": "index.d.ts",
   "scripts": {
-    "test": "test"
+    "test": "test",
+    "build": "tsc"
   },
   "repository": {
     "type": "git",
@@ -23,9 +24,14 @@
   },
   "homepage": "https://github.com/hsuehic/mock-middleware#readme",
   "dependencies": {
-    "chokidar": "^3.0.2"
+    "@types/path-to-regexp": "^1.7.0",
+    "chokidar": "^3.0.2",
+    "path-to-regexp": "^3.0.0"
   },
   "peerDependencies": {
     "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.0"
   }
 }
