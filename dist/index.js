@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const chokidar = require("chokidar");
 const path = require("path");
-function default_1(mockDirectory) {
+function default_1(mockDirectory, apiPattern) {
     const watcher = chokidar.watch(mockDirectory);
     var re = new RegExp(mockDirectory);
     watcher.on('ready', function () {
@@ -16,21 +16,26 @@ function default_1(mockDirectory) {
             });
         });
     });
+    const reg = apiPattern || /^\/api/;
     return function (req, res, next) {
-        try {
-            let filePath = `.${req.path}`;
-            const v = require(filePath);
-            if (typeof v === 'function') {
-                v.call(null, req, res, next);
-                return;
+        if (reg.test(req.path)) {
+            try {
+                let filePath = `.${req.path}`;
+                const v = require(filePath);
+                if (typeof v === 'function') {
+                    v.call(null, req, res, next);
+                    return;
+                }
+                else if (v) {
+                    res.json(v);
+                    return;
+                }
             }
-            else if (v) {
-                res.json(v);
-                return;
-            }
+            catch (_a) { }
+            require(mockDirectory)(req, res, next);
+            return;
         }
-        catch (_a) { }
-        require(mockDirectory)(req, res, next);
+        next();
     };
 }
 exports.default = default_1;
