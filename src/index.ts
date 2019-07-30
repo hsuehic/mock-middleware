@@ -5,6 +5,7 @@ import { Request, Response, NextFunction } from 'express';
 
 export default function(
   mockDirectory: string,
+  apiPattern?: RegExp,
 ): (req: Request, res: Response, next: NextFunction) => void {
   const watcher = chokidar.watch(mockDirectory);
   var re = new RegExp(mockDirectory);
@@ -19,19 +20,24 @@ export default function(
       });
     });
   });
+  const reg = apiPattern || /^\/api/;
 
   return function(req: Request, res: Response, next: NextFunction) {
-    try {
-      let filePath = `.${req.path}`;
-      const v = require(filePath);
-      if (typeof v === 'function') {
-        v.call(null, req, res, next);
-        return;
-      } else if (v) {
-        res.json(v);
-        return;
-      }
-    } catch {}
-    require(mockDirectory)(req, res, next);
+    if (reg.test(req.path)) {
+      try {
+        let filePath = `.${req.path}`;
+        const v = require(filePath);
+        if (typeof v === 'function') {
+          v.call(null, req, res, next);
+          return;
+        } else if (v) {
+          res.json(v);
+          return;
+        }
+      } catch {}
+      require(mockDirectory)(req, res, next);
+      return;
+    }
+    next();
   };
 }
