@@ -6,7 +6,8 @@
   "typings": "index.d.ts",
   "scripts": {
     "test": "test",
-    "build": "tsc"
+    "build": "tsc",
+    "pub": "yarn build && yarn publish"
   },
   "repository": {
     "type": "git",
