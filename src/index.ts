@@ -22,7 +22,7 @@ export default function(
 
   return function(req: Request, res: Response, next: NextFunction) {
     try {
-      let filePath = req.path;
+      let filePath = req.path.substr(1);
       const v = require(filePath);
       if (typeof v === 'function') {
         v.call(null, req, res, next);
