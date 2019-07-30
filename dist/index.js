@@ -18,7 +18,7 @@ function default_1(mockDirectory) {
     });
     return function (req, res, next) {
         try {
-            let filePath = req.path.substr(1);
+            let filePath = `.${req.path}`;
             const v = require(filePath);
             if (typeof v === 'function') {
                 v.call(null, req, res, next);
