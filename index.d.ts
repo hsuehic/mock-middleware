@@ -6,4 +6,5 @@ import { NextFunction, Request, Response } from 'express';
  */
 export default function(
   dir: string,
+  apiPattern?: RegExp,
 ): (req: Request, res: Response, NextFunction) => void;
