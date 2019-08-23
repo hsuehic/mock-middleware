@@ -26,7 +26,7 @@ export default function(
     if (reg.test(req.path)) {
       try {
         let filePath = `${mockDirectory}${req.path}`;
-        const v = require(filePath);
+        const v = require(filePath).default;
         if (typeof v === 'function') {
           v.call(null, req, res, next);
           return;
@@ -35,7 +35,7 @@ export default function(
           return;
         }
       } catch {}
-      require(mockDirectory)(req, res, next);
+      require(mockDirectory).default(req, res, next);
       return;
     }
     next();
